@@ -2,8 +2,8 @@ const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 const db = require('./config/connection');
-const typeDefs = require('./schema'); 
-const resolvers = require('./resolvers');
+const typeDefs = require('./schema/typeDefs');
+const resolvers = require('./schema/resolvers');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -23,17 +23,16 @@ const server = new ApolloServer({
 
 const startApolloServer = async () => {
   await server.start();
+
+  // Apply Apollo Server middleware to the Express app
   server.applyMiddleware({ app });
-  
+
   db.once('open', () => {
     app.listen(PORT, () => {
       console.log(`API server running on port ${PORT}!`);
       console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
-    })
-  })
-  };
-
-// Apply Apollo Server middleware to the Express app
-server.applyMiddleware({ app });
+    });
+  });
+};
 
 startApolloServer();
