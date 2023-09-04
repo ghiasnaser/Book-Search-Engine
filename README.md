@@ -262,3 +262,13 @@ You are required to submit BOTH of the following for review:
 
 ---
 © 2023 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+
+
+
+
+
+
+
+MONGODB_URI
+
+mongodb+srv://ghiasnaser:Joseph@2017@cluster0.zthxmka.mongodb.net/googlebooks?retryWrites=true&w=majority
